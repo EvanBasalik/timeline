@@ -1,0 +1,23 @@
+month,year,milestone,status,date
+6,2017,Milestone 1,Complete,2017-06-01
+7,2017,Milestone 2,Complete,2017-07-01
+10,2017,Milestone 3,Complete,2017-10-01
+12,2017,Milestone 4,Complete,2017-12-01
+1,2018,Milestone 5,Complete,2018-01-01
+1,2018,Milestone 6,Complete,2018-01-01
+2,2018,Milestone 7,Complete,2018-02-01
+5,2018,Milestone 8,Complete,2018-04-01
+6,2018,Milestone 9,On Target,2018-06-01
+6,2018,Milestone 10,On Target,2018-06-01
+9,2018,Milestone 11,At Risk,2018-91-01
+11,2018,Milestone 12,On Target,2018-11-01
+12,2018,Milestone 13,On Target,2018-12-01
+12,2018,Milestone 14,On Target,2018-12-01
+12,2018,Milestone 15,At Risk,2018-12-01
+4,2019,Milestone 16,Critical,2019-04-01
+7,2019,Milestone 17,On Target,2019-07-01
+7,2019,Milestone 18,On Target,2019-07-01
+9,2019,Milestone 19,On Target,2019-09-01
+10,2019,Milestone 20,At Risk,2019-10-01
+10,2019,Milestone 21,On Target,2019-10-01
+12,2019,Milestone 22,Critical,2019-12-01
