@@ -93,6 +93,7 @@ timeline_plot<-timeline_plot+theme(axis.line.y=element_blank(),
 print(timeline_plot)
 
 # Show text for each month
+#timeline_plot<-timeline_plot+geom_text(data=month_df, aes(x=month_date_range,y=-0.1,label=month_format),size=2.5,vjust=0.5, color='black', angle=90)
 timeline_plot<-timeline_plot+geom_text(data=month_df, aes(x=month_date_range,y=-0.1,label=month_format),size=2.5,vjust=0.5, color='black', angle=90)
 print(timeline_plot)
 
