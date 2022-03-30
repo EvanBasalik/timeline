@@ -14,9 +14,9 @@ df <- df[with(df, order(date)), ]
 head(df)
 
 #apply colors to the status
-status_levels <- c("Complete", "On Target", "At Risk", "Critical")
-status_colors <- c("#0070C0", "#00B050", "#FFC000", "#C00000")
-df$status <- factor(df$status, levels=status_levels, ordered=TRUE)
+#status_levels <- c("Complete", "On Target", "At Risk", "Critical")
+#status_colors <- c("#0070C0", "#00B050", "#FFC000", "#C00000")
+#df$status <- factor(df$status, levels=status_levels, ordered=TRUE)
 
 #order the data so it plots in time order
 positions <- c(0.5, -0.5, 1.0, -1.0, 1.5, -1.5)
@@ -29,7 +29,7 @@ line_pos <- data.frame(
 )
 
 df <- merge(x=df, y=line_pos, by="date", all = TRUE)
-df <- df[with(df, order(date, status)), ]
+df <- df[with(df, order(date)), ]
 head(df)
 
 #start calculating plotted points
@@ -49,23 +49,11 @@ month_format <- format(month_date_range, '%b')
 month_df <- data.frame(month_date_range, month_format)
 head(month_df)
 
-#only display years in axis legend that have December/January crossover
-year_date_range <- seq(min(df$date) - months(month_buffer), max(df$date) + months(month_buffer), by='year')
-year_date_range <- as.Date(
-  intersect(
-    ceiling_date(year_date_range, unit="year"),
-    floor_date(year_date_range, unit="year")
-  ),  origin = "1970-01-01"
-)
-year_format <- format(year_date_range, '%Y')
-year_df <- data.frame(year_date_range, year_format)
-head(year_df)
-
 #### PLOT ####
 
-timeline_plot<-ggplot(df,aes(x=date,y=0, col=status, label=milestone))
+timeline_plot<-ggplot(df,aes(x=date,y=0, col= "black", label=milestone))
 timeline_plot<-timeline_plot+labs(col="Milestones")
-timeline_plot<-timeline_plot+scale_color_manual(values=status_colors, labels=status_levels, drop = FALSE)
+#timeline_plot<-timeline_plot+scale_color_manual(values=status_colors, labels=status_levels, drop = FALSE)
 timeline_plot<-timeline_plot+theme_classic()
 print(timeline_plot)
 
