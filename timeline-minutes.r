@@ -35,6 +35,7 @@ df$text_position <- (df$month_count * text_offset * df$direction) + df$position
 head(df)
 
 #### PLOT ####
+#note: the date_breaks should probably be programmatic, but don't need to be for this PoC
 ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=milestone)) +
   labs(col="Milestones")+theme_classic()+scale_x_datetime(date_breaks = "1 hour") +
   geom_hline(yintercept=0,color = "black", size=0.3) +
