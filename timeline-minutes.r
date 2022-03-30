@@ -40,28 +40,29 @@ timeline_plot<-ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=milestone)
 timeline_plot<-timeline_plot+labs(col="Milestones")
 timeline_plot<-timeline_plot+theme_classic()
 timeline_plot<-timeline_plot+scale_x_datetime(date_breaks = "1 hour")
-print(timeline_plot)
+#print(timeline_plot)
 
 # Plot horizontal black line for timeline
 timeline_plot<-timeline_plot+geom_hline(yintercept=0,color = "black", size=0.3)
-print(timeline_plot)
+#print(timeline_plot)
 
 # Plot vertical segment lines for milestones
 timeline_plot<-timeline_plot+geom_segment(data=df[df$month_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=0.2)
-print(timeline_plot)
+#print(timeline_plot)
 
 # Don't show axes, appropriately position legend
 timeline_plot<-timeline_plot+theme(#axis.line.y=element_blank(),
-                                   #axis.text.y=element_blank(),
-                                   #axis.title.x=element_blank(),
-                                   #axis.title.y=element_blank(),
-                                   #axis.ticks.y=element_blank(),
+                                   axis.text.y=element_blank(),
+                                   axis.title.x=element_blank(),
+                                   axis.title.y=element_blank(),
+                                   axis.ticks.y=element_blank(),
                                    #axis.text.x =element_blank(),
                                    #axis.ticks.x =element_blank(),
                                    #axis.line.x =element_blank(),
-                                   legend.position = "none"
+                                   legend.position = "none",
+                                   axis.text.
 )
-print(timeline_plot)
+#print(timeline_plot)
 
 # Show text for each milestone
 timeline_plot<-timeline_plot+geom_text(aes(y=text_position,label=milestone),size=2.5)
