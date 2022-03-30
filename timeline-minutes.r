@@ -35,9 +35,8 @@ df$text_position <- (df$month_count * text_offset * df$direction) + df$position
 head(df)
 
 #### PLOT ####
-#note: the date_breaks should probably be programmatic, but don't need to be for this PoC
 ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=milestone)) +
-  labs(col="Milestones")+theme_classic()+scale_x_datetime(date_breaks = "1 hour") +
+  labs(col="Milestones")+theme_classic()+scale_x_datetime(expand = expansion(mult = 0.2)) +
   geom_hline(yintercept=0,color = "black", size=0.3) +
   geom_segment(data=df[df$month_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=0.2) +
   theme(#axis.line.y=element_blank(),
@@ -50,14 +49,14 @@ ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=milestone)) +
     #axis.line.x =element_blank(),
     legend.position = "none"
   ) +
-  geom_text(aes(y=text_position,label=milestone),size=2.5)
+  geom_text(aes(y=text_position,label=milestone),size=5)
 
 
 
 
 #### PLOT DEBUGGING ####
 #timeline_plot<-ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=milestone)) +
-#                    labs(col="Milestones")+theme_classic()+scale_x_datetime(date_breaks = "1 hour") +
+#                    labs(col="Milestones")+theme_classic()+scale_x_datetime(expand = expansion(mult = 0.2)) +
 #                    geom_hline(yintercept=0,color = "black", size=0.3) +
 #  geom_segment(data=df[df$month_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=0.2) +
 #  theme(#axis.line.y=element_blank(),
