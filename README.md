@@ -3,7 +3,7 @@ Techniques for producing a timeline chart that actually represents time along th
 ![inconsistent](https://github.com/EvanBasalik/timeline/blob/main/inconsistent.jpg)
 
 ## Variants
-1. Streamline R-variant integrated into PowerBI as an R-based visual
+1. R-variant integrated into PowerBI as an R-based visual
 ![Sample_streamlined](PowerBI-Rvisual.jpg)
 
 2. Original R-variant (based on code from https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/ with full credit to that author)
