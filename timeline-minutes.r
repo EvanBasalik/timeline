@@ -31,7 +31,8 @@ head(df)
 text_offset <- 0.05
 
 df$month_count <- ave(df$date==df$date, df$date, FUN=cumsum)
-df$text_position <- (df$month_count * text_offset * df$direction) + df$position
+df$minute_count <-ave(floor_date(df$date, unit = "minutes")==floor_date(df$date, unit = "minutes"), floor_date(df$date, unit = "minutes"), FUN=cumsum)
+df$text_position <- (df$minute_count * text_offset * df$direction) + df$position
 head(df)
 
 #### PLOT ####
@@ -56,16 +57,16 @@ ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event)) +
 #### PLOT ####
 timeline_plot<-ggplot(df,aes(x=date,y=0, col= "black", label=event))
 timeline_plot<-timeline_plot+labs(col="Events") 
-timeline_plot<-timeline_plot+theme_bw() + scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M:%S"))
+timeline_plot<-timeline_plot+theme_bw() + scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M:%S"), minor_breaks = seq(as.POSIXct(min(df$date)), as.POSIXct(max(df$date)), by = '1 min'))
 timeline_plot<-timeline_plot + scale_y_continuous(breaks = NULL) #remove y-axis gridlines
 print(timeline_plot)
 
 # Plot horizontal black line for timeline
-timeline_plot<-timeline_plot+geom_hline(yintercept=0,color = "black", size=0.3)
+timeline_plot<-timeline_plot+geom_hline(yintercept=0,color = "black", size=0.1)
 print(timeline_plot)
 
 # Plot vertical segment lines for events
-timeline_plot<-timeline_plot+geom_segment(data=df[df$month_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=0.2)
+timeline_plot<-timeline_plot+geom_segment(data=df[df$month_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=1)
 print(timeline_plot)
 
 # Don't show axes, appropriately position legend
@@ -78,7 +79,8 @@ timeline_plot<-timeline_plot+theme(
   axis.text.x=element_text(angle = 45, vjust = 0.5, hjust=1),
   #axis.ticks.x =element_blank(),
   #axis.line.x =element_blank(),
-  legend.position = "none"
+  legend.position = "none",
+  panel.grid.major.x = element_line(size = .1, color = 'black')
 )
 print(timeline_plot)
 
