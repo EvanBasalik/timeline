@@ -35,8 +35,8 @@ df$text_position <- (df$month_count * text_offset * df$direction) + df$position
 head(df)
 
 #### PLOT ####
-ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=milestone)) +
-  labs(col="Milestones")+theme_classic()+scale_x_datetime(expand = expansion(mult = 0.2)) +
+ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event)) +
+  labs(col="Events")+theme_classic()+scale_x_datetime(expand = expansion(mult = 0.2)) +
   geom_hline(yintercept=0,color = "black", size=0.3) +
   geom_segment(data=df[df$month_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=0.2) +
   theme(#axis.line.y=element_blank(),
@@ -49,13 +49,13 @@ ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=milestone)) +
     #axis.line.x =element_blank(),
     legend.position = "none"
   ) +
-  geom_text(aes(y=text_position,label=milestone),size=5)
+  geom_text(aes(y=text_position,label=event),size=5)
 
 #### PLOT DEBUGGING ####
 
 #### PLOT ####
-timeline_plot<-ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=milestone))
-timeline_plot<-timeline_plot+labs(col="Milestones") 
+timeline_plot<-ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event))
+timeline_plot<-timeline_plot+labs(col="Events") 
 timeline_plot<-timeline_plot+theme_classic() + scale_x_datetime(expand = expansion(mult = 0.2))
 print(timeline_plot)
 
@@ -63,7 +63,7 @@ print(timeline_plot)
 timeline_plot<-timeline_plot+geom_hline(yintercept=0,color = "black", size=0.3)
 print(timeline_plot)
 
-# Plot vertical segment lines for milestones
+# Plot vertical segment lines for events
 timeline_plot<-timeline_plot+geom_segment(data=df[df$month_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=0.2)
 print(timeline_plot)
 
@@ -80,7 +80,7 @@ timeline_plot<-timeline_plot+theme(#axis.line.y=element_blank(),
 )
 print(timeline_plot)
 
-# Show text for each milestone
-timeline_plot<-timeline_plot+geom_text(aes(y=text_position,label=milestone),size=5)
+# Show text for each event
+timeline_plot<-timeline_plot+geom_text(aes(y=text_position,label=event),size=5)
 print(timeline_plot)
 
