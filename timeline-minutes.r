@@ -56,7 +56,7 @@ ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event)) +
 #### PLOT ####
 timeline_plot<-ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event))
 timeline_plot<-timeline_plot+labs(col="Events") 
-timeline_plot<-timeline_plot+theme_classic() + scale_x_datetime(expand = expansion(mult = 0.2))
+timeline_plot<-timeline_plot+theme_classic() + scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M:%S"))
 print(timeline_plot)
 
 # Plot horizontal black line for timeline
@@ -73,7 +73,7 @@ timeline_plot<-timeline_plot+theme(#axis.line.y=element_blank(),
   axis.title.x=element_blank(),
   axis.title.y=element_blank(),
   axis.ticks.y=element_blank(),
-  #axis.text.x =element_blank(),
+  axis.text.x=element_text(angle = 45, vjust = 0.5, hjust=1),
   #axis.ticks.x =element_blank(),
   #axis.line.x =element_blank(),
   legend.position = "none"
