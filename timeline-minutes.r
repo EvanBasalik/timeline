@@ -54,9 +54,10 @@ ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event)) +
 #### PLOT DEBUGGING ####
 
 #### PLOT ####
-timeline_plot<-ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event))
+timeline_plot<-ggplot(df,aes(x=date,y=0, col= "black", label=event))
 timeline_plot<-timeline_plot+labs(col="Events") 
-timeline_plot<-timeline_plot+theme_classic() + scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M:%S"))
+timeline_plot<-timeline_plot+theme_bw() + scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M:%S"))
+timeline_plot<-timeline_plot + scale_y_continuous(breaks = NULL) #remove y-axis gridlines
 print(timeline_plot)
 
 # Plot horizontal black line for timeline
@@ -68,7 +69,8 @@ timeline_plot<-timeline_plot+geom_segment(data=df[df$month_count == 1,], aes(y=p
 print(timeline_plot)
 
 # Don't show axes, appropriately position legend
-timeline_plot<-timeline_plot+theme(#axis.line.y=element_blank(),
+timeline_plot<-timeline_plot+theme(
+  #axis.line.y=element_blank(),
   axis.text.y=element_blank(),
   axis.title.x=element_blank(),
   axis.title.y=element_blank(),
