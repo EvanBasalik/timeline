@@ -57,7 +57,7 @@ ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event)) +
 #### PLOT ####
 timeline_plot<-ggplot(df,aes(x=date,y=0, col= "black", label=event))
 timeline_plot<-timeline_plot+labs(col="Events") 
-timeline_plot<-timeline_plot+theme_bw() + scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M:%S"), minor_breaks = seq(as.POSIXct(min(df$date)), as.POSIXct(max(df$date)), by = '1 min'))
+timeline_plot<-timeline_plot+theme_classic() + scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M:%S"), breaks = c(df$date))
 timeline_plot<-timeline_plot + scale_y_continuous(breaks = NULL) #remove y-axis gridlines
 print(timeline_plot)
 
@@ -79,8 +79,7 @@ timeline_plot<-timeline_plot+theme(
   axis.text.x=element_text(angle = 45, vjust = 0.5, hjust=1),
   #axis.ticks.x =element_blank(),
   #axis.line.x =element_blank(),
-  legend.position = "none",
-  panel.grid.major.x = element_line(size = .1, color = 'black')
+  legend.position = "none"
 )
 print(timeline_plot)
 
