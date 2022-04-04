@@ -50,7 +50,7 @@ head(df)
 
 #### PLOT ####
 ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event)) +
-  labs(col="Events")+theme_classic()+scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M"), breaks = c(df$date)) +
+  labs(col="Events")+theme_classic()+scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%m-%d %H:%M"), breaks = c(df$date)) +
   scale_y_continuous(breaks = NULL) + #remove y-axis gridlines
   geom_hline(yintercept=0,color = "black", size=0.1) +
   geom_segment(data=df[df$minute_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=1) +
@@ -60,7 +60,7 @@ ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event)) +
     axis.title.x=element_blank(),
     axis.title.y=element_blank(),
     axis.ticks.y=element_blank(),
-    axis.text.x=element_text(angle = 45, vjust = 0.5, hjust=.5),
+    axis.text.x=element_text(angle = 45, vjust = 0.5, hjust=.5, size = 10),
     axis.ticks.length = unit(.25, "cm"),
     #axis.ticks.x =element_blank(),
     #axis.line.x =element_blank(),
