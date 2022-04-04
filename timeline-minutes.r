@@ -50,7 +50,7 @@ head(df)
 
 #### PLOT ####
 ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event)) +
-  labs(col="Events")+theme_classic()+scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M:%S"), breaks = c(df$date)) +
+  labs(col="Events")+theme_classic()+scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M"), breaks = c(df$date)) +
   scale_y_continuous(breaks = NULL) + #remove y-axis gridlines
   geom_hline(yintercept=0,color = "black", size=0.1) +
   geom_segment(data=df[df$minute_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=1) +
@@ -66,41 +66,41 @@ ggplot(df,aes(x=ymd_hms(date),y=0, col= "black", label=event)) +
     #axis.line.x =element_blank(),
     legend.position = "none"
   ) +
-  geom_text(aes(y=text_position,label=event),size=5)
+  geom_label(aes(y=text_position,label=event),size=5, colour="black")
 
 #### PLOT DEBUGGING ####
 
-#### PLOT ####
-timeline_plot<-ggplot(df,aes(x=date,y=0, col= "black", label=event))
-timeline_plot<-timeline_plot+labs(col="Events") 
-timeline_plot<-timeline_plot+theme_classic() + scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M:%S"), breaks = c(df$date))
-timeline_plot<-timeline_plot + scale_y_continuous(breaks = NULL) #remove y-axis gridlines
-print(timeline_plot)
-
-# Plot horizontal black line for timeline
-timeline_plot<-timeline_plot+geom_hline(yintercept=0,color = "black", size=0.1)
-print(timeline_plot)
-
-# Plot vertical segment lines for events
-timeline_plot<-timeline_plot+geom_segment(data=df[df$minute_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=1)
-print(timeline_plot)
-
-# Don't show axes, appropriately position legend
-timeline_plot<-timeline_plot+theme(
-  #axis.line.y=element_blank(),
-  axis.text.y=element_blank(),
-  axis.title.x=element_blank(),
-  axis.title.y=element_blank(),
-  axis.ticks.y=element_blank(),
-  axis.text.x=element_text(angle = 45, vjust = 0.5, hjust=.5),
-  axis.ticks.length = unit(.25, "cm"),
-  #axis.ticks.x =element_blank(),
-  #axis.line.x =element_blank(),
-  legend.position = "none"
-)
-print(timeline_plot)
-
-# Show text for each event
-timeline_plot<-timeline_plot+geom_label(aes(y=text_position,label=event),size=5, colour="black")
-print(timeline_plot)
+# #### PLOT ####
+# timeline_plot<-ggplot(df,aes(x=date,y=0, col= "black", label=event))
+# timeline_plot<-timeline_plot+labs(col="Events") 
+# timeline_plot<-timeline_plot+theme_classic() + scale_x_datetime(expand = expansion(mult = 0.2), labels = date_format("%Y-%m-%d %H:%M"), breaks = c(df$date))
+# timeline_plot<-timeline_plot + scale_y_continuous(breaks = NULL) #remove y-axis gridlines
+# print(timeline_plot)
+# 
+# # Plot horizontal black line for timeline
+# timeline_plot<-timeline_plot+geom_hline(yintercept=0,color = "black", size=0.1)
+# print(timeline_plot)
+# 
+# # Plot vertical segment lines for events
+# timeline_plot<-timeline_plot+geom_segment(data=df[df$minute_count == 1,], aes(y=position,yend=0,xend=date), color='black', size=1)
+# print(timeline_plot)
+# 
+# # Don't show axes, appropriately position legend
+# timeline_plot<-timeline_plot+theme(
+#   #axis.line.y=element_blank(),
+#   axis.text.y=element_blank(),
+#   axis.title.x=element_blank(),
+#   axis.title.y=element_blank(),
+#   axis.ticks.y=element_blank(),
+#   axis.text.x=element_text(angle = 45, vjust = 0.5, hjust=.5),
+#   axis.ticks.length = unit(.25, "cm"),
+#   #axis.ticks.x =element_blank(),
+#   #axis.line.x =element_blank(),
+#   legend.position = "none"
+# )
+# print(timeline_plot)
+# 
+# # Show text for each event
+# timeline_plot<-timeline_plot+geom_label(aes(y=text_position,label=event),size=5, colour="black")
+# print(timeline_plot)
 
