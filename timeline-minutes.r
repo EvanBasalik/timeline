@@ -4,14 +4,17 @@ library(ggplot2)
 library(scales)
 library(lubridate)
 library(stringr)
+library(readxl) 
+library(M3)
 
 #read the files
-df <- read.csv('timeline-r-2.csv')
+#df <- read.csv('timeline-r-2.csv')
+df <- read_excel('inputxls.xlsx')
 df
 
-# create a new column with actual date
-df$date <- with(df, ymd_hms(df$inputdate))
-df <- df[with(df, order(date)), ]
+#df$date <- with(df, ymd_hms(df$Date))
+df <- df[with(df, order(Date)), ]
+df$date <- df$Date
 head(df)
 
 #order the data so it plots in time order
@@ -19,7 +22,8 @@ positions <- c(0.5, -0.5, 1.0, -1.0, 1.5, -1.5)
 directions <- c(1, -1)
 
 #wrap any events that are long
-df$event<-str_wrap(df$event, width = 20, indent = 0, exdent = 0)
+#also, rename EventData -> event to be as consistent as possible with old CSV approach
+df$event<-str_wrap(df$EventData, width = 20, indent = 0, exdent = 0)
 head(df)
 
 line_pos <- data.frame(
